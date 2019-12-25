@@ -18,12 +18,15 @@ body, input[type="text"], button {
 }
 
 
-.mapList {
-  float: left;
+.container {
+  display: flex;
 }
-
-.mapShow {
-  float: right;
+.right {
+  position: relative;
+  margin: 10px;
+}
+.bottom {
+  position: absolute;
 }
 /* everywhere else */
 * {

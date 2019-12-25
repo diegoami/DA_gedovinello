@@ -1,17 +1,19 @@
 <h2>My Maps</h2>
-<div class="mapList" >
-  <ul class="maps">
-    <li *ngFor="let map of maps" (click)="onSelect(map)">
-      <span class="badge">{{map.id}}</span> {{map.name}}
-    </li>
-  </ul>
-</div>
+<div class="container">
+  <div class="left" >
+    <ul class="maps">
+      <li *ngFor="let map of maps" (click)="onSelect(map)">
+        <span class="badge">{{map.id}}</span> {{map.name}}
+      </li>
+    </ul>
+  </div>
 
-<div class="mapShow" *ngIf="selectedMap">
-  <img src="assets/{{selectedMap.getFullPathImage()}}" alt="assets/{{selectedMap.getFullPathImage()}}">
-</div>
+  <div class="right" *ngIf="selectedMap">
+    <img src="assets/{{selectedMap.getFullPathImage()}}" alt="assets/{{selectedMap.getFullPathImage()}}">
+  </div>
 
-<div *ngIf="selectedMap">
+</div>
+<div class="bottom" *ngIf="selectedMap">
   <h2>{{selectedMap.name | uppercase}} Details</h2>
   <div><span>id: </span>{{selectedMap.id}}</div>
   <div>
