@@ -1,3 +1,7 @@
-<h2>{{map.name}} Details</h2>
+<h2>{{map.name | uppercase}} Details</h2>
 <div><span>id: </span>{{map.id}}</div>
-<div><span>name: </span>{{map.name}}</div>
+<div>
+  <label>name:
+    <input [(ngModel)]="map.name" placeholder="name"/>
+  </label>
+</div>
