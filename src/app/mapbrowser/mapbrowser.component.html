@@ -2,7 +2,9 @@
 <div class="container">
   <div class="left" >
     <ul class="maps">
-      <li *ngFor="let map of maps" (click)="onSelect(map)">
+      <li *ngFor="let map of maps"
+          [class.selected]="map === selectedMap"
+          (click)="onSelect(map)">
         <span class="badge">{{map.id}}</span> {{map.name}}
       </li>
     </ul>
