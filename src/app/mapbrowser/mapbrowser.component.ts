@@ -9,10 +9,15 @@ import { MAPS } from '../list-maps';
 })
 export class MapbrowserComponent implements OnInit {
   maps = MAPS;
+  selectedMap: Map;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSelect(map: Map): void {
+    this.selectedMap = map;
   }
 
 }

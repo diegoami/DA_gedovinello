@@ -6,4 +6,11 @@ export class Map {
   imgEmpty: string;
   height: number;
   width: number;
+
+
+  public getFullPathImage(): string {
+    const fullpath = 'maps/' + this.dir + this.imgComp;
+    console.log(fullpath);
+    return fullpath;
+  }
 }

@@ -16,6 +16,15 @@ body, input[type="text"], button {
   color: #333;
   font-family: Cambria, Georgia;
 }
+
+
+.mapList {
+  float: left;
+}
+
+.mapShow {
+  float: right;
+}
 /* everywhere else */
 * {
   font-family: Arial, Helvetica, sans-serif;
