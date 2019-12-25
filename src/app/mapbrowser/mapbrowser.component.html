@@ -1,7 +1,6 @@
-<h2>{{map.name | uppercase}} Details</h2>
-<div><span>id: </span>{{map.id}}</div>
-<div>
-  <label>name:
-    <input [(ngModel)]="map.name" placeholder="name"/>
-  </label>
-</div>
+<h2>My Maps</h2>
+<ul class="maps">
+  <li *ngFor="let map of maps">
+    <span class="badge">{{map.id}}</span> {{map.name}}
+  </li>
+</ul>
