@@ -4,13 +4,15 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MapbrowserComponent } from './mapbrowser/mapbrowser.component';
 import { FormsModule } from '@angular/forms';
-import { MapDetailComponent } from './map-detail/map-detail.component'; // <-- NgModel lives here
+import { MapDetailComponent } from './map-detail/map-detail.component';
+import { MessagesComponent } from './messages/messages.component'; // <-- NgModel lives here
 
 @NgModule({
   declarations: [
     AppComponent,
     MapbrowserComponent,
-    MapDetailComponent
+    MapDetailComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,

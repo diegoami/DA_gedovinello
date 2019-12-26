@@ -23,7 +23,7 @@ export class MapbrowserComponent implements OnInit {
   }
 
   getMaps(): void {
-    this.maps = this.mapService.getMaps();
+    this.mapService.getMaps()
+      .subscribe(maps => this.maps = maps);
   }
-
 }
