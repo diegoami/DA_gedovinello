@@ -6,14 +6,16 @@ import { MapbrowserComponent } from './mapbrowser/mapbrowser.component';
 import { FormsModule } from '@angular/forms';
 import { MapDetailComponent } from './map-detail/map-detail.component';
 import { MessagesComponent } from './messages/messages.component';
-import { AppRoutingModule } from './app-routing.module'; // <-- NgModel lives here
+import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component'; // <-- NgModel lives here
 
 @NgModule({
   declarations: [
     AppComponent,
     MapbrowserComponent,
     MapDetailComponent,
-    MessagesComponent
+    MessagesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
