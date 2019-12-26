@@ -1,26 +1,21 @@
 <h2>My Maps</h2>
-<div class="container">
-  <div class="left" >
-    <ul class="maps">
-      <li *ngFor="let map of maps"
-          [class.selected]="map === selectedMap"
-          (click)="onSelect(map)">
-        <span class="badge">{{map.id}}</span> {{map.name}}
-      </li>
-    </ul>
+<div class="topcontainer">
+  <div class="container">
+    <div>
+      <ul class="maps">
+        <li *ngFor="let map of maps"
+            [class.selected]="map === selectedMap"
+            (click)="onSelect(map)">
+          <span class="badge">{{map.id}}</span> {{map.name}}
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="selectedMap">
+      <img src="assets/{{selectedMap.getFullPathImage()}}" alt="assets/{{selectedMap.getFullPathImage()}}">
+    </div>
   </div>
 
-  <div class="right" *ngIf="selectedMap">
-    <img src="assets/{{selectedMap.getFullPathImage()}}" alt="assets/{{selectedMap.getFullPathImage()}}">
-  </div>
+  <app-map-detail [map]="selectedMap"></app-map-detail>
 
-</div>
-<div class="bottom" *ngIf="selectedMap">
-  <h2>{{selectedMap.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{selectedMap.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="selectedMap.name" placeholder="name"/>
-    </label>
-  </div>
 </div>

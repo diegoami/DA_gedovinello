@@ -3,12 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { MapbrowserComponent } from './mapbrowser/mapbrowser.component';
-import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { FormsModule } from '@angular/forms';
+import { MapDetailComponent } from './map-detail/map-detail.component'; // <-- NgModel lives here
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapbrowserComponent
+    MapbrowserComponent,
+    MapDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -62,15 +62,13 @@ body, input[type="text"], button {
   border-radius: 4px 0 0 4px;
 }
 
+.top-container {
+  display: flex;
+  flex-direction: column;
+}
 .container {
   display: flex;
-}
-.right {
-  position: relative;
-  margin: 10px;
-}
-.bottom {
-  position: absolute;
+  flex-direction: row;
 }
 /* everywhere else */
 * {
