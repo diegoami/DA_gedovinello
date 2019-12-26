@@ -1,6 +1,13 @@
 <div *ngIf="map">
 
   <h2>{{map.name | uppercase}} Details</h2>
-
-  <img src="assets/{{map.getFullPathImage()}}" alt="assets/{{map.getFullPathImage()}}">
+  <div>
+     <button (click)="goBack()">go back</button>
+  </div>
+  <div>
+    <img src="{{map.getFullPathImage()}}" alt="{{map.getFullPathImage()}}">
+  </div>
+  <div>
+    <textarea rows="40" cols="100">{{hotspots}}</textarea>
+  </div>
 </div>

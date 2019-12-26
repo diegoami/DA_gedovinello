@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Map } from '../map';
-import { MAPS } from '../list-maps';
 import { MapService } from '../map.service';
+
 
 @Component({
   selector: 'app-mapbrowser',
@@ -10,7 +10,6 @@ import { MapService } from '../map.service';
 })
 export class MapbrowserComponent implements OnInit {
   maps: Map[];
-  selectedMap: Map;
 
   constructor(private mapService: MapService) { }
 

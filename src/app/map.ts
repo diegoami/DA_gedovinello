@@ -9,7 +9,7 @@ export class Map {
 
 
   public getFullPathImage(): string {
-    const fullpath = 'maps/' + this.dir + this.imgComp;
+    const fullpath = 'http://amicabile.com/javascript/geoclick/maps/' + this.dir + this.imgComp;
     console.log(fullpath);
     return fullpath;
   }

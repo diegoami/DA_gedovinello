@@ -10,6 +10,7 @@ import { MapService } from '../map.service';
   styleUrls: ['./map-detail.component.css']
 })
 export class MapDetailComponent implements OnInit {
+  private hotspots: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,6 +22,7 @@ export class MapDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getMap();
+    this.getHotspots();
   }
 
   getMap(): void {
@@ -28,4 +30,15 @@ export class MapDetailComponent implements OnInit {
     this.mapService.getMap(id)
       .subscribe(map => this.map = map);
   }
+
+  getHotspots(): void {
+    this.mapService.getHotspots(this.map.dir)
+      .subscribe(hotspots => this.hotspots = hotspots);
+  }
+
+
+  goBack(): void {
+    this.location.back();
+  }
+
 }
