@@ -3,18 +3,14 @@
   <div class="container">
     <div>
       <ul class="maps">
-        <li *ngFor="let map of maps"
-            [class.selected]="map === selectedMap"
-            (click)="onSelect(map)">
-          <span class="badge">{{map.id}}</span> {{map.name}}
+        <li *ngFor="let map of maps">
+          <a routerLink="/mapdetail/{{map.id}}">
+            <span class="badge">{{map.id}}</span> {{map.name}}
+          </a>
         </li>
       </ul>
     </div>
 
-    <div *ngIf="selectedMap">
-      <img src="assets/{{selectedMap.getFullPathImage()}}" alt="assets/{{selectedMap.getFullPathImage()}}">
-    </div>
-  </div>
 
   <app-map-detail [map]="selectedMap"></app-map-detail>
 

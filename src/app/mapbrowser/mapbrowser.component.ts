@@ -18,10 +18,6 @@ export class MapbrowserComponent implements OnInit {
     this.getMaps();
   }
 
-  onSelect(map: Map): void {
-    this.selectedMap = map;
-  }
-
   getMaps(): void {
     this.mapService.getMaps()
       .subscribe(maps => this.maps = maps);

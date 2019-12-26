@@ -16,4 +16,10 @@ export class MapService {
     return of(MAPS);
   }
 
+  getMap(id: number): Observable<Map> {
+    this.messageService.add(`MapService: fetched map id=${id}`);
+    return of(MAPS.find(hero => hero.id === id));
+  }
+
+
 }

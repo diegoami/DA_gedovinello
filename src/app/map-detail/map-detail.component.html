@@ -1,11 +1,6 @@
 <div *ngIf="map">
 
   <h2>{{map.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{map.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="map.name" placeholder="name"/>
-    </label>
-  </div>
 
+  <img src="assets/{{map.getFullPathImage()}}" alt="assets/{{map.getFullPathImage()}}">
 </div>
