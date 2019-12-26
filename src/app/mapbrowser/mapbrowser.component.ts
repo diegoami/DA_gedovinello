@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Map } from '../map';
 import { MAPS } from '../list-maps';
+import { MapService } from '../map.service';
 
 @Component({
   selector: 'app-mapbrowser',
@@ -8,16 +9,21 @@ import { MAPS } from '../list-maps';
   styleUrls: ['./mapbrowser.component.css']
 })
 export class MapbrowserComponent implements OnInit {
-  maps = MAPS;
+  maps: Map[];
   selectedMap: Map;
 
-  constructor() { }
+  constructor(private mapService: MapService) { }
 
   ngOnInit() {
+    this.getMaps();
   }
 
   onSelect(map: Map): void {
     this.selectedMap = map;
+  }
+
+  getMaps(): void {
+    this.maps = this.mapService.getMaps();
   }
 
 }

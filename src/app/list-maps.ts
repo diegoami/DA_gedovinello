@@ -1,13 +1,13 @@
 import { Map } from './map';
 
 export const MAPS: Map[] = [
-  { id: 1, name: 'Africa',  dir : 'Africa/', imgComp : 'Africa.jpg', imgEmpty : 'Africm.jpg', height : 1051, width : 1038, getFullPathImage: Map.prototype.getFullPathImage},
-  { id: 2, name: 'Asia',  dir : 'Asia/', imgComp : 'Asia.jpg', imgEmpty : 'Asim.jpg', height : 1316, width : 1062, getFullPathImage: Map.prototype.getFullPathImage},
-  { id: 3, name: 'China', dir : 'Asia/China/', imgComp : 'China.jpg', imgEmpty : 'Chinm.jpg', height : 956, width : 978, getFullPathImage: Map.prototype.getFullPathImage},
-  { id: 4, name: 'India', dir : 'Asia/India/', imgComp : 'India.jpg', imgEmpty : 'Indim.jpg', height : 1288, width : 1084, getFullPathImage: Map.prototype.getFullPathImage},
-  { id: 5, name: 'Europe', dir : 'Europe/', imgComp : 'europe.jpg', imgEmpty : 'europm.jpg', height : 1364, width: 1054, getFullPathImage: Map.prototype.getFullPathImage},
-  { id: 6, name: 'Austria', dir : 'Europe/Austria/', imgComp : 'Austria.jpg', imgEmpty : 'Austrim.jpg', height: 1105, width : 1563, getFullPathImage: Map.prototype.getFullPathImage},
-  { id: 7, name: 'Belgium', dir : 'Europe/Belgium/', imgComp : 'belgio.jpg', imgEmpty : 'belgim.jpg', height: 1090, width : 1002, getFullPathImage: Map.prototype.getFullPathImage},
+{ id: 1, name: 'Africa',  dir : 'Africa/', imgComp : 'Africa.jpg', imgEmpty : 'Africm.jpg', height : 1051, width : 1038, getFullPathImage: Map.prototype.getFullPathImage},
+{ id: 2, name: 'Asia',  dir : 'Asia/', imgComp : 'Asia.jpg', imgEmpty : 'Asim.jpg', height : 1316, width : 1062, getFullPathImage: Map.prototype.getFullPathImage},
+{ id: 3, name: 'China', dir : 'Asia/China/', imgComp : 'China.jpg', imgEmpty : 'Chinm.jpg', height : 956, width : 978, getFullPathImage: Map.prototype.getFullPathImage},
+{ id: 4, name: 'India', dir : 'Asia/India/', imgComp : 'India.jpg', imgEmpty : 'Indim.jpg', height : 1288, width : 1084, getFullPathImage: Map.prototype.getFullPathImage},
+{ id: 5, name: 'Europe', dir : 'Europe/', imgComp : 'europe.jpg', imgEmpty : 'europm.jpg', height : 1364, width: 1054, getFullPathImage: Map.prototype.getFullPathImage},
+{ id: 6, name: 'Austria', dir : 'Europe/Austria/', imgComp : 'Austria.jpg', imgEmpty : 'Austrim.jpg', height: 1105, width : 1563, getFullPathImage: Map.prototype.getFullPathImage},
+{ id: 7, name: 'Belgium', dir : 'Europe/Belgium/', imgComp : 'belgio.jpg', imgEmpty : 'belgim.jpg', height: 1090, width : 1002, getFullPathImage: Map.prototype.getFullPathImage},
 { id: 8, name:  'Croatia' ,  dir : 'Europe/Croatia/', imgComp : 'croatia.jpg', imgEmpty : 'croatim.jpg', height: 1216, width : 1036, getFullPathImage: Map.prototype.getFullPathImage},
 { id: 9, name:  'CzechRepublic' ,  dir : 'Europe/CzechRepublic/', imgComp : 'CzechRepublic.jpg', imgEmpty : 'CzechRepublim.jpg', height: 1477, width : 1381, getFullPathImage: Map.prototype.getFullPathImage},
 { id: 10, name:  'Denmark' ,  dir : 'Europe/Denmark/', imgComp : 'Denmark.jpg', imgEmpty : 'Denmarm.jpg', height: 1154, width : 1406, getFullPathImage: Map.prototype.getFullPathImage},
