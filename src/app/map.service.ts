@@ -9,7 +9,7 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class MapService {
-  private mapUrl = 'http://amicabile.com/javascript/geoclick/maps/';
+  private mapUrl = 'assets/maps/';
 
   constructor(private messageService: MessageService,
               private http: HttpClient) { }
@@ -27,7 +27,7 @@ export class MapService {
   getHotspots(path: string): Observable<string> {
     const totalPath = this.mapUrl + path + 'towns.hsf';
     this.messageService.add(`MapService: fetching hotspots from ${totalPath}`);
-    return this.http.get<string>(totalPath);
+    return this.http.get(totalPath, {responseType: 'text'});
 
   }
 
