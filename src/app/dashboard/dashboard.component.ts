@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Map } from '../map';
-import { MapService } from '../map.service';
+import { GeoMap } from '../geoMap';
+import { GeoMapService } from '../geo-map.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,9 +9,9 @@ import { MapService } from '../map.service';
 })
 export class DashboardComponent implements OnInit {
 
-  maps: Map[];
+  maps: GeoMap[];
 
-  constructor(private mapService: MapService) { }
+  constructor(private mapService: GeoMapService) { }
 
   ngOnInit() {
     this.getMaps();

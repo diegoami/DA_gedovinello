@@ -1,8 +1,8 @@
-import { Map } from '../map';
+import { GeoMap } from '../geoMap';
 import {Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { MapService } from '../map.service';
+import { GeoMapService } from '../geo-map.service';
 import { HotspotService } from '../hotspot.service';
 import {HotspotList} from '../hotspotlist';
 
@@ -13,12 +13,13 @@ import {HotspotList} from '../hotspotlist';
 })
 export class MapDetailComponent implements OnInit {
   private hotspotDefinition: string;
-  private hotspotList: HotspotList;
-  private map: Map;
+  private hotspotListMap: Map<string, HotspotList> = new Map();
+  private hotspotValues: Array<string> = new Array<string>();
+  private map: GeoMap;
 
   constructor(
     private route: ActivatedRoute,
-    private mapService: MapService,
+    private mapService: GeoMapService,
     private hotspotService: HotspotService,
     private location: Location
   ) {}
@@ -33,12 +34,17 @@ export class MapDetailComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.mapService.getMap(id).subscribe(function(map) {
         that.map = map;
-        that.hotspotService.getHotspotDefinition(that.map.dir).subscribe(
-          function(hotspotDefinition) {
-            that.hotspotDefinition = hotspotDefinition;
-            that.hotspotList = that.hotspotService.getHotspotList(that.hotspotDefinition);
-          }
-        );
+        const hotspotFiles = that.map.hotspotFiles;
+        hotspotFiles.forEach((hotspotFile) => {
+          that.hotspotService.getHotspotDefinition(that.map, hotspotFile).subscribe(
+            function (hotspotDefinition) {
+              that.hotspotDefinition = hotspotDefinition;
+              that.hotspotListMap[hotspotFile] = that.hotspotService.getHotspotList(that.hotspotDefinition);
+              that.hotspotValues.push(that.hotspotListMap[hotspotFile].getAllHotspots().join());
+            }
+          );
+        });
+        // that.hotspotValues = Array.from(that.hotspotListMap.values()).map( (value) => value.getAllHotspots().join());
       });
   }
 

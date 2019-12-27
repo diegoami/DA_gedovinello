@@ -1,4 +1,4 @@
-export class Map {
+export class GeoMap {
   id: number;
   name: string;
   dir: string;
