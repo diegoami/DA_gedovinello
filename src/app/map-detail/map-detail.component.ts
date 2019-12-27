@@ -3,6 +3,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { MapService } from '../map.service';
+import { HotspotService } from '../hotspot.service';
+import {HotspotList} from '../hotspotlist';
 
 @Component({
   selector: 'app-map-detail',
@@ -10,32 +12,35 @@ import { MapService } from '../map.service';
   styleUrls: ['./map-detail.component.css']
 })
 export class MapDetailComponent implements OnInit {
-  private hotspots: string;
+  private hotspotDefinition: string;
+  private hotspotList: HotspotList;
+  private map: Map;
 
   constructor(
     private route: ActivatedRoute,
     private mapService: MapService,
+    private hotspotService: HotspotService,
     private location: Location
   ) {}
 
-  @Input() map: Map;
 
   ngOnInit() {
     this.getMap();
-    this.getHotspots();
   }
 
   getMap(): void {
+    const that = this;
     const id = +this.route.snapshot.paramMap.get('id');
-    this.mapService.getMap(id)
-      .subscribe(map => this.map = map);
+    this.mapService.getMap(id).subscribe(function(map) {
+        that.map = map;
+        that.hotspotService.getHotspotDefinition(that.map.dir).subscribe(
+          function(hotspotDefinition) {
+            that.hotspotDefinition = hotspotDefinition;
+            that.hotspotList = that.hotspotService.getHotspotList(that.hotspotDefinition);
+          }
+        );
+      });
   }
-
-  getHotspots(): void {
-    this.mapService.getHotspots(this.map.dir)
-      .subscribe(hotspots => this.hotspots = hotspots);
-  }
-
 
   goBack(): void {
     this.location.back();

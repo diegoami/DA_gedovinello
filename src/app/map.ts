@@ -6,6 +6,7 @@ export class Map {
   imgEmpty: string;
   height: number;
   width: number;
+  hotspotFiles: string[];
 
 
   public getFullPathImage(): string {
