@@ -33,19 +33,8 @@ export class MapDetailComponent implements OnInit {
     const that = this;
     const id = +this.route.snapshot.paramMap.get('id');
     this.mapService.getMap(id).subscribe(function(map) {
-        that.map = map;
-        const hotspotFiles = that.map.hotspotFiles;
-        hotspotFiles.forEach((hotspotFile) => {
-          that.hotspotService.getHotspotDefinition(that.map, hotspotFile).subscribe(
-            function (hotspotDefinition) {
-              that.hotspotDefinition = hotspotDefinition;
-              that.hotspotListMap[hotspotFile] = that.hotspotService.getHotspotList(that.hotspotDefinition);
-              that.hotspotValues.push(that.hotspotListMap[hotspotFile].getAllHotspots().join());
-            }
-          );
-        });
-        // that.hotspotValues = Array.from(that.hotspotListMap.values()).map( (value) => value.getAllHotspots().join());
-      });
+      that.map = map;
+    });
   }
 
   goBack(): void {
