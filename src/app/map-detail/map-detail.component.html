@@ -4,9 +4,8 @@
   <div>
      <button (click)="goBack()">go back</button>
   </div>
-  <div>
-    <img src="{{map.getFullPathImage()}}" alt="{{map.getFullPathImage()}}">
+  <div *ngFor="let hotspotFile of map.hotspotFiles">
+    <app-hotspot-geo-map [map]="map" [hotspotFile]="hotspotFile"></app-hotspot-geo-map>
   </div>
-  <app-hotspot-geo-map [map]="map"></app-hotspot-geo-map>
 
 </div>

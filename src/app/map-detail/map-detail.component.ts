@@ -12,9 +12,6 @@ import {HotspotList} from '../hotspotlist';
   styleUrls: ['./map-detail.component.css']
 })
 export class MapDetailComponent implements OnInit {
-  private hotspotDefinition: string;
-  private hotspotListMap: Map<string, HotspotList> = new Map();
-  private hotspotValues: Array<string> = new Array<string>();
   private map: GeoMap;
 
   constructor(

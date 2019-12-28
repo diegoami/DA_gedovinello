@@ -10,10 +10,11 @@ import {HotspotList} from '../hotspotlist';
 })
 export class HotspotGeoMapComponent implements OnInit {
   private hotspotDefinition: string;
-  private hotspotListMap: Map<string, HotspotList> = new Map();
-  private hotspotValues: Array<string> = new Array<string>();
+  private hotspotList: HotspotList;
+  private hotspotValues: string;
 
   @Input('map') map: GeoMap;
+  @Input('hotspotFile') hotspotFile: string;
 
   constructor(
     private hotspotService: HotspotService
@@ -24,16 +25,13 @@ export class HotspotGeoMapComponent implements OnInit {
   }
 
   loadHotspots(): void {
-    const hotspotFiles = this.map.hotspotFiles;
     const currentGeoMap = this;
-    hotspotFiles.forEach((hotspotFile) => {
-      currentGeoMap.hotspotService.getHotspotDefinition(this.map, hotspotFile).subscribe(
-        function (hotspotDefinition) {
-          currentGeoMap.hotspotDefinition = hotspotDefinition;
-          currentGeoMap.hotspotListMap[hotspotFile] = currentGeoMap.hotspotService.getHotspotList(currentGeoMap.hotspotDefinition);
-          currentGeoMap.hotspotValues.push(currentGeoMap.hotspotListMap[hotspotFile].getAllHotspots().join());
-        }
-      );
-    });
+    currentGeoMap.hotspotService.getHotspotDefinition(this.map, this.hotspotFile).subscribe(
+      function (hotspotDefinition) {
+        currentGeoMap.hotspotDefinition = hotspotDefinition;
+        currentGeoMap.hotspotList = currentGeoMap.hotspotService.getHotspotList(currentGeoMap.hotspotDefinition);
+        currentGeoMap.hotspotValues = currentGeoMap.hotspotList.getAllHotspots().join();
+      }
+    );
   }
 }
