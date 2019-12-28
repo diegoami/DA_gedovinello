@@ -9,6 +9,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component'; // <-- NgModel lives here
 import { HttpClientModule } from '@angular/common/http';
+import { HotspotGeoMapComponent } from './hotspot-geo-map/hotspot-geo-map.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     MapbrowserComponent,
     MapDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    HotspotGeoMapComponent
   ],
   imports: [
     BrowserModule,

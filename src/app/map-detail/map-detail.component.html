@@ -7,7 +7,6 @@
   <div>
     <img src="{{map.getFullPathImage()}}" alt="{{map.getFullPathImage()}}">
   </div>
-  <div *ngFor="let hotspotValue of hotspotValues">
-    <textarea rows="40" cols="80">{{hotspotValue}}</textarea>
-  </div>
+  <app-hotspot-geo-map [map]="map"></app-hotspot-geo-map>
+
 </div>
