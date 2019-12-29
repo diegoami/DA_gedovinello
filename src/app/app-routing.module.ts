@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'mapbrowser', component: MapbrowserComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'mapdetail/:id/:hotspotfile', component: MapDetailComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+  { path: '', redirectTo: '/mapbrowser', pathMatch: 'full' }
 ];
 
 @NgModule({
