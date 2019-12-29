@@ -12,7 +12,7 @@ import { HotspotGeoMapComponent } from './hotspot-geo-map/hotspot-geo-map.compon
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatListModule } from '@angular/material/list';
-
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { MatListModule } from '@angular/material/list';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatListModule
+    MatListModule,
+    MatCardModule
   ],
   providers: [
     HttpClientModule

@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { GeoMapService } from '../geo-map.service';
 import { HotspotService } from '../hotspot.service';
-import {HotspotList} from '../hotspotlist';
+
 
 @Component({
   selector: 'app-map-detail',
