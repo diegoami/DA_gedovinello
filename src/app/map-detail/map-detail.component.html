@@ -1,9 +1,7 @@
 <div *ngIf="map && hotspotFile">
 
-  <h2>{{map.name | uppercase}} Details</h2>
-  <div>
-     <button (click)="goBack()">go back</button>
-  </div>
+  <h2>{{map.name | uppercase}} - {{hotspotFile}}</h2>
+
   <app-hotspot-geo-map [map]="map" [hotspotFile]="hotspotFile"></app-hotspot-geo-map>
 
 
