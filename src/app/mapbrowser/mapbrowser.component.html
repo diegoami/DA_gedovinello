@@ -2,13 +2,11 @@
 <div class="topcontainer">
   <div class="container">
     <div>
-      <ul class="maps">
-        <li *ngFor="let map of maps">
-          <a routerLink="/mapdetail/{{map.id}}">
-            <span class="badge">{{map.id}}</span> {{map.name}}
+      <mat-nav-list>
+          <a mat-list-item *ngFor="let map of maps" routerLink="/mapdetail/{{map.id}}">
+          {{map.name}}
           </a>
-        </li>
-      </ul>
+      </mat-nav-list>
     </div>
   </div>
 

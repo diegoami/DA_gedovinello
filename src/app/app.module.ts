@@ -10,6 +10,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component'; // <-- NgModel lives here
 import { HttpClientModule } from '@angular/common/http';
 import { HotspotGeoMapComponent } from './hotspot-geo-map/hotspot-geo-map.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -25,7 +28,9 @@ import { HotspotGeoMapComponent } from './hotspot-geo-map/hotspot-geo-map.compon
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatListModule
   ],
   providers: [
     HttpClientModule
