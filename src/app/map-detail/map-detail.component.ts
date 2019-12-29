@@ -13,6 +13,7 @@ import {HotspotList} from '../hotspotlist';
 })
 export class MapDetailComponent implements OnInit {
   private map: GeoMap;
+  hotspotFile: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,7 +30,8 @@ export class MapDetailComponent implements OnInit {
   getMap(): void {
     const that = this;
     const id = +this.route.snapshot.paramMap.get('id');
-    this.mapService.getMap(id).subscribe(function(map) {
+    this.hotspotFile = this.route.snapshot.paramMap.get('hotspotfile')
+    this.mapService.getMap(id).subscribe((map) => {
       that.map = map;
     });
   }

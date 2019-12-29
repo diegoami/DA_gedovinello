@@ -8,7 +8,7 @@ import { MapDetailComponent } from './map-detail/map-detail.component';
 const routes: Routes = [
   { path: 'mapbrowser', component: MapbrowserComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'mapdetail/:id', component: MapDetailComponent },
+  { path: 'mapdetail/:id/:hotspotfile', component: MapDetailComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 

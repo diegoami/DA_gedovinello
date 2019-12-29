@@ -1,11 +1,10 @@
-<div *ngIf="map">
+<div *ngIf="map && hotspotFile">
 
   <h2>{{map.name | uppercase}} Details</h2>
   <div>
      <button (click)="goBack()">go back</button>
   </div>
-  <div *ngFor="let hotspotFile of map.hotspotFiles">
-    <app-hotspot-geo-map [map]="map" [hotspotFile]="hotspotFile"></app-hotspot-geo-map>
-  </div>
+  <app-hotspot-geo-map [map]="map" [hotspotFile]="hotspotFile"></app-hotspot-geo-map>
+
 
 </div>
