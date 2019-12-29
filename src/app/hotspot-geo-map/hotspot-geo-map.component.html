@@ -1,5 +1,12 @@
-<div>
-  <img src="{{map.getFullPathImage()}}" alt="{{map.getFullPathImage()}}">
-</div>
+<div *ngIf="hotspotList ">
+  <div>
+    <img id="img-{{getUniqueId()}}" height="{{map.height}}" width="{{map.width}}" src="{{map.getFullPathImage()}}" [attr.useMap]="getAreaMapName()">
+  </div>
+  <map id="hotspot-{{getUniqueId()}}"  name="{{getAreaMapName()}}" >
+    <ng-container *ngFor="let hotspot of hotspotList.hotspots">
+      <area alt="{{hotspot.hotspotName}}" shape="{{hotspot.getShape()}}" coords="{{hotspot.getCoords(scaling)}}"/>
+    </ng-container>
+  </map>
 
-<textarea rows="40" cols="80">{{hotspotValues}}</textarea>
+  <textarea rows="40" cols="80">{{hotspotValues}}</textarea>
+</div>

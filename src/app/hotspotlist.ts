@@ -2,7 +2,7 @@ import {Hotspot} from './hotspot';
 
 
 export class HotspotList {
-  private hotspots: Hotspot[] = new Array();
+  hotspots: Hotspot[] = new Array();
 
   constructor(pointsFile: string) {
     this.parsePointsFile(pointsFile);

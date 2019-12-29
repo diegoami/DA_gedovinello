@@ -10,8 +10,10 @@ import {HotspotList} from '../hotspotlist';
 })
 export class HotspotGeoMapComponent implements OnInit {
   private hotspotDefinition: string;
-  private hotspotList: HotspotList;
   private hotspotValues: string;
+
+  hotspotList: HotspotList;
+  scaling = 1;
 
   @Input('map') map: GeoMap;
   @Input('hotspotFile') hotspotFile: string;
@@ -33,5 +35,13 @@ export class HotspotGeoMapComponent implements OnInit {
         currentGeoMap.hotspotValues = currentGeoMap.hotspotList.getAllHotspots().join();
       }
     );
+  }
+
+  getUniqueId(): string {
+    return this.map.id + '-' + this.map.name + '-' + this.hotspotFile;
+  }
+
+  getAreaMapName(): string {
+    return this.map.name + '-' + this.hotspotFile;
   }
 }
