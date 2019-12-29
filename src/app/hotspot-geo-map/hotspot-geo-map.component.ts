@@ -17,6 +17,7 @@ export class HotspotGeoMapComponent implements OnInit {
 
   @Input('map') map: GeoMap;
   @Input('hotspotFile') hotspotFile: string;
+  @Input('currentHotspot') currentHotspot: string;
 
   constructor(
     private hotspotService: HotspotService
@@ -43,5 +44,9 @@ export class HotspotGeoMapComponent implements OnInit {
 
   getAreaMapName(): string {
     return this.map.name + '-' + this.hotspotFile;
+  }
+
+  onMouseOver(alt: string) {
+    this.currentHotspot = alt;
   }
 }

@@ -4,9 +4,10 @@
   </div>
   <map id="hotspot-{{getUniqueId()}}"  name="{{getAreaMapName()}}" >
     <ng-container *ngFor="let hotspot of hotspotList.hotspots">
-      <area alt="{{hotspot.hotspotName}}" shape="{{hotspot.getShape()}}" coords="{{hotspot.getCoords(scaling)}}"/>
+      <area #currentArea alt="{{hotspot.hotspotName}}" shape="{{hotspot.getShape()}}" coords="{{hotspot.getCoords(scaling)}}" (mouseover)="onMouseOver(currentArea.alt)"/>
     </ng-container>
   </map>
-
-  <textarea rows="40" cols="80">{{hotspotValues}}</textarea>
+  <br>
+  <span>{{currentHotspot}}</span>
+  <br>
 </div>
