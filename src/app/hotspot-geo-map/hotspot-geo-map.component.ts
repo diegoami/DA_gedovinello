@@ -14,6 +14,7 @@ export class HotspotGeoMapComponent implements OnInit {
   private ctx: CanvasRenderingContext2D;
   private image: any;
   private paths: Map<string, Path2D> = new Map<string, Path2D>();
+  private currentPath: Path2D;
   hotspotList: HotspotList;
   scaling = 1;
 
@@ -102,7 +103,9 @@ export class HotspotGeoMapComponent implements OnInit {
       console.log(`Trying ${key}`);
       if (this.ctx.isPointInPath(path, x, y, 'evenodd')) {
         console.log(key);
+        this.ctx.drawImage(this.image, 0, 0, this.map.width, this.map.height);
         this.currentHotspot = key;
+        this.ctx.fill(path);
       }
     });
   }
