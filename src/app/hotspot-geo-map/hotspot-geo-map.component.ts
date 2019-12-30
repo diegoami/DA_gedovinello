@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, Input, OnInit, ViewChild} from '@angular/core';
 import {GeoMap} from '../geoMap';
 import {HotspotService} from '../hotspot.service';
 import {HotspotList} from '../hotspotlist';
@@ -13,6 +13,7 @@ export class HotspotGeoMapComponent implements OnInit {
   private hotspotDefinition: string;
   private ctx: CanvasRenderingContext2D;
   private image: any;
+  private paths: Map<string, Path2D> = new Map<string, Path2D>();
   hotspotList: HotspotList;
   scaling = 1;
 
@@ -61,37 +62,38 @@ export class HotspotGeoMapComponent implements OnInit {
   loadHotspotsInCanvas() {
     for (const obj of this.hotspotList.hotspots) {
       const hotspot: Hotspot = <Hotspot>obj;
+
+      const name = hotspot.hotspotName;
       if (hotspot.getShape() === 'circle') {
         const [centerX, centerY, radius] = hotspot.getCoords(1)[0];
-          this.ctx.beginPath();
-        this.ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-        this.ctx.fillStyle = 'green';
-        this.ctx.fill();
-        this.ctx.lineWidth = 5;
-        this.ctx.strokeStyle = '#003300';
-        this.ctx.stroke();
+        this.ctx.beginPath();
+        const path2D = new Path2D();
+        path2D.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+        path2D.closePath();
+        this.paths[name] = path2D;
       } else {
         const all_coords = hotspot.getCoords(1);
-        this.ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
         this.ctx.beginPath();
+        const path2D = new Path2D();
         all_coords.forEach( (coord, index) => {
           const [x, y] = coord;
           if (index === 0) {
-            this.ctx.moveTo(x, y);
+            path2D.moveTo(x, y);
           } else {
-            this.ctx.lineTo(x, y);
+            path2D.lineTo(x, y);
           }
         });
-        this.ctx.closePath();
-        this.ctx.stroke();
-        this.ctx.fill();
+        path2D.closePath();
+        this.paths[name] = path2D;
       }
     }
   }
 
-  onMouseDown(area: any) {
-    this.currentHotspot = area.alt;
-    console.log(`Selected ${area.attributes['key'].value}`);
+  @HostListener('mousedown', ['$event'])
+  onMouseDown(event) {
+    const clientX = event.clientX;
+    const clientY = event.clientY;
+    console.log(`${clientX}, ${clientY}`);
   }
 
 }
