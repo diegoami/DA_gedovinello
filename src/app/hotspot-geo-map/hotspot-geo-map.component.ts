@@ -52,7 +52,6 @@ export class HotspotGeoMapComponent implements OnInit {
   }
 
   loadImage(): void {
-
     this.image.onload = () => {
       this.ctx.drawImage(this.image, 0, 0, this.map.width, this.map.height);
       this.loadHotspotsInCanvas();
@@ -67,24 +66,27 @@ export class HotspotGeoMapComponent implements OnInit {
       if (hotspot.getShape() === 'circle') {
         const [centerX, centerY, radius] = hotspot.getCoords(1)[0];
         this.ctx.beginPath();
-        const path2D = new Path2D();
-        path2D.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-        path2D.closePath();
-        this.paths[name] = path2D;
+        this.paths.set(name, new Path2D());
+        this.paths.get(name).arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+        this.ctx.fillStyle = 'rgba(255, 255, 255, 0.5)'
+//        this.ctx.fill(path2D)
+        this.ctx.closePath();
+
       } else {
         const all_coords = hotspot.getCoords(1);
         this.ctx.beginPath();
-        const path2D = new Path2D();
+        this.ctx.fillStyle = 'rgba(255, 255, 255, 0.5)'
+        this.paths.set(name, new Path2D());
         all_coords.forEach( (coord, index) => {
           const [x, y] = coord;
           if (index === 0) {
-            path2D.moveTo(x, y);
+            this.paths.get(name).moveTo(x, y);
           } else {
-            path2D.lineTo(x, y);
+            this.paths.get(name).lineTo(x, y);
           }
         });
-        path2D.closePath();
-        this.paths[name] = path2D;
+        this.paths.get(name).lineTo(all_coords[0][0], all_coords[0][1]);
+        this.ctx.closePath();
       }
     }
   }
@@ -94,6 +96,13 @@ export class HotspotGeoMapComponent implements OnInit {
     const clientX = event.clientX;
     const clientY = event.clientY;
     console.log(`${clientX}, ${clientY}`);
+    this.paths.forEach((path: Path2D, key: string) => {
+      console.log(`Trying ${key}`);
+      if (this.ctx.isPointInPath(path, clientX, clientY, 'evenodd')) {
+        console.log(key);
+        this.currentHotspot = key;
+      }
+    });
   }
 
 }
