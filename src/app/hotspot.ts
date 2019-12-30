@@ -2,9 +2,9 @@
 export class Hotspot {
   private file: string;
   public hotspotName: string;
-  private hotspotType: string;
+  public hotspotType: string;
   private hotpointString: string;
-  private hotspots: string[];
+  pcoords: string[];
   private defined: boolean;
 
   constructor(private lineHotSpot: string) {
@@ -16,7 +16,7 @@ export class Hotspot {
       this.hotspotName = groups[2];
       this.hotspotType = groups[3];
       this.hotpointString = groups[4];
-      this.hotspots = this.hotpointString.split(';');
+      this.pcoords = this.hotpointString.split(';');
       this.defined = true;
     } else {
       this.defined = false;
@@ -37,8 +37,8 @@ export class Hotspot {
 
   getCenter(scaling: number): Array<number> {
     let xmax = 0, ymax = 0, xmin = 10000000, ymin = 10000000;
-    for (let i = 0; i < this.hotspots.length; i++) {
-      const c = this.hotspots[i].split(',').map((x) => parseInt(x, 10));
+    for (let i = 0; i < this.pcoords.length; i++) {
+      const c = this.pcoords[i].split(',').map((x) => parseInt(x, 10));
       if (c[0] > xmax)  {
          xmax = Number(c[0]);
       }
@@ -59,17 +59,22 @@ export class Hotspot {
     return rlist;
   }
 
-  getCoords(scaling: number): string {
+  getCoords(scaling: number): number[][] {
     if (scaling !== 1) {
-      for (let i = 0 ; i < this.hotspots.length; i++) {
-        const hotSpotXY =  this.hotspots[i].split(',').map( (x) => parseInt(x, 10));
-        this.hotspots[i] = (hotSpotXY[0] * scaling).toString() + ',' + (hotSpotXY[1] * scaling).toString();
+      for (let i = 0 ; i < this.pcoords.length; i++) {
+        const hotSpotXY =  this.pcoords[i].split(',').map( (x) => parseInt(x, 10));
+        this.pcoords[i] = (hotSpotXY[0] * scaling).toString() + ',' + (hotSpotXY[1] * scaling).toString();
       }
     }
-    if (this.hotspotType === '-3') {
+    if (this.hotspotType !== '-3') {
+      return this.pcoords.map((c) => {
+        const [x, y] = c.split(',');
+        return [parseInt(x, 10), parseInt(y, 10)];
+      });
+    } else {
 
-      const firstPoint =  this.hotspots[0].split(',').map((x) => parseInt(x, 10) );
-      const secondPoint =  this.hotspots[1].split(',').map((x) =>  parseInt(x, 10));
+      const firstPoint = this.pcoords[0].split(',').map((x) => parseInt(x, 10));
+      const secondPoint = this.pcoords[1].split(',').map((x) => parseInt(x, 10));
       const centerPoint = [
         (firstPoint[0] + secondPoint[0]) / 2,
         (firstPoint[1] + secondPoint[1]) / 2
@@ -78,12 +83,10 @@ export class Hotspot {
       const radius =
         Math.max(
           Math.abs((firstPoint[0] - secondPoint[0]) / 2),
-          Math.abs((firstPoint[1] - secondPoint[1]) / 2 )
+          Math.abs((firstPoint[1] - secondPoint[1]) / 2)
         );
 
-      return centerPoint[0] + ',' + centerPoint[1] + ',' + radius ;
-    } else {
-      return this.hotspots.join(',');
+      return [[centerPoint[0], centerPoint[1], radius]];
     }
   }
 
