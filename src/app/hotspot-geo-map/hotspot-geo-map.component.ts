@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {GeoMap} from '../geoMap';
 import {HotspotService} from '../hotspot.service';
 import {HotspotList} from '../hotspotlist';
+declare var $: any;
+
 
 @Component({
   selector: 'app-hotspot-geo-map',
@@ -27,6 +29,11 @@ export class HotspotGeoMapComponent implements OnInit {
     this.loadHotspots();
   }
 
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngAfterViewInit() {
+    this.loadMapster();
+  }
+
   loadHotspots(): void {
     const currentGeoMap = this;
     currentGeoMap.hotspotService.getHotspotDefinition(this.map, this.hotspotFile).subscribe(
@@ -38,15 +45,46 @@ export class HotspotGeoMapComponent implements OnInit {
     );
   }
 
-  getUniqueId(): string {
-    return this.map.id + '-' + this.map.name + '-' + this.hotspotFile;
+  loadMapster(): void {
+    $('img').mapster();
   }
+
+  getUniqueId(): string {
+    return `${this.map.id}-${this.map.name}-${this.hotspotFile}`;
+  }
+
+  getImageId(): string {
+    return `img-${this.getUniqueId()}`;
+  }
+
+  getImageMapId(): string {
+    return `imgmap-${this.getUniqueId()}`;
+  }
+
+  getImageMapIdForImage(): string {
+    return `#${this.getImageMapId()}`;
+  }
+
 
   getAreaMapName(): string {
-    return this.map.name + '-' + this.hotspotFile;
+    return `${this.map.name}-${this.hotspotFile}`;
   }
 
-  onMouseOver(alt: string) {
-    this.currentHotspot = alt;
+  getAreaMapNameRef(): string {
+    return `#${this.getAreaMapName()}`;
   }
+
+//  onMouseOver(area: HTMLAreaElement) {
+//    this.currentHotspot = area.alt;
+//   console.log(`Over ${area.id}`);
+//   $(`#${area.id}`).mapster('highlight')
+// }
+
+
+  onMouseDown(area: any) {
+    this.currentHotspot = area.alt;
+    console.log(`Selected ${area.attributes['key'].value}`);
+//    $('img').mapster('select', true, area.attributes['key'].value);
+  }
+
 }

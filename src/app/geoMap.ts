@@ -11,7 +11,12 @@ export class GeoMap {
 
   public getFullPathImage(): string {
     const fullpath = 'assets/maps/' + this.dir + this.imgComp;
-    console.log(fullpath);
+    return fullpath;
+  }
+
+
+  public getEmptyImage(): string {
+    const fullpath = 'assets/maps/' + this.dir + this.imgEmpty;
     return fullpath;
   }
 }
