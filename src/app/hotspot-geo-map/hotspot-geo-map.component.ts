@@ -93,12 +93,14 @@ export class HotspotGeoMapComponent implements OnInit {
 
   @HostListener('mousedown', ['$event'])
   onMouseDown(event) {
-    const clientX = event.clientX;
-    const clientY = event.clientY;
-    console.log(`${clientX}, ${clientY}`);
+    const rect = event.target.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top
+    console.log(`${x}, ${y}`);
+    this.currentHotspot = '';
     this.paths.forEach((path: Path2D, key: string) => {
       console.log(`Trying ${key}`);
-      if (this.ctx.isPointInPath(path, clientX, clientY, 'evenodd')) {
+      if (this.ctx.isPointInPath(path, x, y, 'evenodd')) {
         console.log(key);
         this.currentHotspot = key;
       }
