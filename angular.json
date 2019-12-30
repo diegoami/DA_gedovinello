@@ -29,8 +29,6 @@
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.js",
-              "node_modules/jquery-imagemapster/dist/jquery.imagemapster.js"
             ]
           },
           "configurations": {

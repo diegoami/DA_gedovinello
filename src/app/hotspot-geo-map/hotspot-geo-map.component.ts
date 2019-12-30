@@ -1,9 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {GeoMap} from '../geoMap';
 import {HotspotService} from '../hotspot.service';
 import {HotspotList} from '../hotspotlist';
-declare var $: any;
-
 
 @Component({
   selector: 'app-hotspot-geo-map',
@@ -12,14 +10,17 @@ declare var $: any;
 })
 export class HotspotGeoMapComponent implements OnInit {
   private hotspotDefinition: string;
-  private hotspotValues: string;
-
+  private ctx: CanvasRenderingContext2D;
   hotspotList: HotspotList;
   scaling = 1;
+
 
   @Input('map') map: GeoMap;
   @Input('hotspotFile') hotspotFile: string;
   @Input('currentHotspot') currentHotspot: string;
+
+  @ViewChild('canvas', {static: true})
+  canvas: ElementRef<HTMLCanvasElement>;
 
   constructor(
     private hotspotService: HotspotService
@@ -27,11 +28,12 @@ export class HotspotGeoMapComponent implements OnInit {
 
   ngOnInit() {
     this.loadHotspots();
+    this.ctx = this.canvas.nativeElement.getContext('2d');
+
   }
 
-  // tslint:disable-next-line:use-life-cycle-interface
   ngAfterViewInit() {
-    this.loadMapster();
+    this.loadImage();
   }
 
   loadHotspots(): void {
@@ -40,51 +42,21 @@ export class HotspotGeoMapComponent implements OnInit {
       function (hotspotDefinition) {
         currentGeoMap.hotspotDefinition = hotspotDefinition;
         currentGeoMap.hotspotList = currentGeoMap.hotspotService.getHotspotList(currentGeoMap.hotspotDefinition);
-        currentGeoMap.hotspotValues = currentGeoMap.hotspotList.getAllHotspots().join();
       }
     );
   }
 
-  loadMapster(): void {
-    $('img').mapster();
+  loadImage(): void {
+    const image = new Image();
+    image.src = this.map.getFullPathImage();
+    image.onload = () => {
+      this.ctx.drawImage(image, 0, 0, this.map.width, this.map.height);
+    };
   }
-
-  getUniqueId(): string {
-    return `${this.map.id}-${this.map.name}-${this.hotspotFile}`;
-  }
-
-  getImageId(): string {
-    return `img-${this.getUniqueId()}`;
-  }
-
-  getImageMapId(): string {
-    return `imgmap-${this.getUniqueId()}`;
-  }
-
-  getImageMapIdForImage(): string {
-    return `#${this.getImageMapId()}`;
-  }
-
-
-  getAreaMapName(): string {
-    return `${this.map.name}-${this.hotspotFile}`;
-  }
-
-  getAreaMapNameRef(): string {
-    return `#${this.getAreaMapName()}`;
-  }
-
-//  onMouseOver(area: HTMLAreaElement) {
-//    this.currentHotspot = area.alt;
-//   console.log(`Over ${area.id}`);
-//   $(`#${area.id}`).mapster('highlight')
-// }
-
 
   onMouseDown(area: any) {
     this.currentHotspot = area.alt;
     console.log(`Selected ${area.attributes['key'].value}`);
-//    $('img').mapster('select', true, area.attributes['key'].value);
   }
 
 }

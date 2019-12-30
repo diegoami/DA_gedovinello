@@ -1,19 +1,12 @@
-<div *ngIf="hotspotList ">
-  <mat-card>
-    <mat-card-title>
-      {{map.name | uppercase}} - {{hotspotFile}}
-    </mat-card-title>
-    <mat-card-header>{{currentHotspot}}</mat-card-header>
-    <mat-card-content>
-      <div>
-        <img id="{{getImageId()}}" height="{{map.height}}" width="{{map.width}}" src="{{map.getFullPathImage()}}" [attr.useMap]="getAreaMapNameRef()">
-      </div>
-      <map id="{{getImageMapId()}}"  name="{{getAreaMapName()}}" >
-        <ng-container *ngFor="let hotspot of hotspotList.hotspots">
-          <area #currentArea id="area-{{hotspot.hotspotName}}" alt="{{hotspot.hotspotName}}" shape="{{hotspot.getShape()}}"
-                coords="{{hotspot.getCoords(scaling)}}" (mousedown)="onMouseDown(currentArea)" [attr.key]=hotspot.hotspotName />
-        </ng-container>
-      </map>
-    </mat-card-content>
-  </mat-card>
-</div>
+
+<mat-card>
+  <mat-card-title>
+    {{map.name | uppercase}} - {{hotspotFile}}
+  </mat-card-title>
+  <mat-card-header>{{currentHotspot}}</mat-card-header>
+  <mat-card-content>
+    <div>
+        <canvas #canvas height="{{map.height}}" width="{{map.width}}"></canvas>
+    </div>
+  </mat-card-content>
+</mat-card>

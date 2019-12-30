@@ -17,9 +17,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
-declare var $: any;
-console.log(`jQuery version: ${$.fn.jquery}`);
-
 @NgModule({
   declarations: [
     AppComponent,
