@@ -16,6 +16,20 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { GeoNavComponent } from './geo-nav/geo-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { GeoDashboardComponent } from './geo-dashboard/geo-dashboard.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { GeoTableComponent } from './geo-table/geo-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MapbrowserPageComponent } from './mapbrowser-page/mapbrowser-page.component';
+import { MapDetailPageComponent } from './map-detail-page/map-detail-page.component';
+
+
 
 @NgModule({
   declarations: [
@@ -23,7 +37,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MapbrowserComponent,
     MapDetailComponent,
     MessagesComponent,
-    HotspotGeoMapComponent
+    HotspotGeoMapComponent,
+    GeoNavComponent,
+    GeoDashboardComponent,
+    GeoTableComponent,
+    MapbrowserPageComponent,
+    MapDetailPageComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +54,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatCardModule,
     MatMenuModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatGridListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [
     HttpClientModule

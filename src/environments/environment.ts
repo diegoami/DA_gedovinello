@@ -6,6 +6,11 @@ export const environment = {
   production: false
 };
 
+export const globals = {
+  selectedMapId: 5,
+  selectedHotspotFile: 'countries'
+}
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

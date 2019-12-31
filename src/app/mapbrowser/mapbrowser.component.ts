@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GeoMap } from '../geoMap';
 import { GeoMapService } from '../geo-map.service';
-
+import { globals } from '../../environments/environment';
 
 @Component({
   selector: 'app-mapbrowser',
@@ -20,5 +20,9 @@ export class MapbrowserComponent implements OnInit {
   getMaps(): void {
     this.mapService.getMaps()
       .subscribe(maps => this.maps = maps);
+  }
+
+  isSelected(id, hotspotFile) {
+    return id === globals.selectedMapId && ( (hotspotFile === undefined) || (hotspotFile === globals.selectedHotspotFile) );
   }
 }

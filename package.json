@@ -22,6 +22,7 @@
     "@angular/platform-browser": "^8.2.14",
     "@angular/platform-browser-dynamic": "^8.2.14",
     "@angular/router": "^8.2.14",
+    "@material-ui/core": "^4.8.2",
     "@types/lodash": "^4.14.149",
     "core-js": "^2.6.11",
     "rxjs": "~6.5.4",

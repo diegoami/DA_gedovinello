@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { GeoMapService } from '../geo-map.service';
 import { HotspotService } from '../hotspot.service';
+import {globals} from '../../environments/environment';
 
 
 @Component({
@@ -30,7 +31,9 @@ export class MapDetailComponent implements OnInit {
   getMap(): void {
     const that = this;
     const id = +this.route.snapshot.paramMap.get('id');
-    this.hotspotFile = this.route.snapshot.paramMap.get('hotspotfile')
+    this.hotspotFile = this.route.snapshot.paramMap.get('hotspotfile');
+    globals.selectedHotspotFile = this.hotspotFile;
+    globals.selectedMapId = id;
     this.mapService.getMap(id).subscribe((map) => {
       that.map = map;
     });

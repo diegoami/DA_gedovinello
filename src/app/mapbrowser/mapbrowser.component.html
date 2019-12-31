@@ -1,20 +1,16 @@
 
-<div class="topcontainer">
-  <div class="container">
-    <div>
       <mat-list>
         <mat-list-item *ngFor="let map of maps">
           <p matLine>
             <span>{{map.name}} </span> :
             <ng-container *ngFor="let hotspotfile of map.hotspotFiles">
-              <a routerLink="/mapdetail/{{map.id}}/{{hotspotfile}}">
-                {{hotspotfile}}
-              </a> --
+
+                 <a [ngClass]="isSelected(map.id, hotspotfile) ? 'bold' : ''" routerLink="/mapdetail/{{map.id}}/{{hotspotfile}}">
+
+                  {{hotspotfile}}
+                 </a>
+                --
             </ng-container>
           </p>
         </mat-list-item>
       </mat-list>
-    </div>
-  </div>
-
-</div>
