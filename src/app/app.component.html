@@ -1,11 +1,10 @@
 <mat-sidenav-container>
-  <mat-menu>
-    <button mat-menu-item>Browse</button>
-
+  <mat-menu #appMenu>
+    <button mat-menu-item [routerLink]="'mapbrowser'">List</button>
+    <!--<button mat-menu-item [routerLink]="'revise'">Revise</button> -->
   </mat-menu>
-  <button mat-icon-button>
+  <button mat-icon-button [matMenuTriggerFor]="appMenu">
     <mat-icon>more_vert</mat-icon>
   </button>
-
   <router-outlet></router-outlet>
 </mat-sidenav-container>
